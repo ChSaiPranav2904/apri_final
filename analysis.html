@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Patient Analysis</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      max-width: 600px;
+      margin: auto;
+      margin-top: 40px;
+    }
+    .btn {
+      width: 100%;
+    }
+    #resultBox {
+      margin-top: 2rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+    textarea {
+      white-space: pre-wrap;
+      background-color: rgba(255, 255, 255, 0.05);
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .logout-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #ff5252;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logout button -->
+  <button class="logout-btn" onclick="logout()">Logout</button>
+
+  <div class="card text-center">
+    <h3 class="mb-4">Search Patient by Mobile Number</h3>
+    <input type="tel" class="form-control mb-3" id="searchMobile" placeholder="Enter Mobile Number" required>
+    <button class="btn btn-primary" onclick="searchPatient()">Search</button>
+  </div>
+
+  <div id="resultBox" style="display: none;">
+    <h5 class="mt-4">Patient Details:</h5>
+    <textarea rows="10" readonly id="patientDetails"></textarea>
+    <canvas id="chartCanvas" style="max-width: 500px; margin-top: 2rem;"></canvas>
+  </div>
+
+  <script>
+    // Optional: Prevent unauthorized access
+    if (!sessionStorage.getItem("verified")) {
+      alert("You are not authorized. Please login again.");
+      window.location.href = "admin_login.html";
+    }
+
+    function logout() {
+      sessionStorage.removeItem("verified");
+      window.location.href = "admin_login.html";
+    }
+
+    const sheetURL = "https://script.google.com/macros/s/AKfycbzhKWmynjOHlyP711kw_1cGtKmI714xWpzSyjcB6nYwBQdX1JCBrkaVgjySbV20HGUa/exec";
+
+    async function searchPatient() {
+      const rawInput = document.getElementById('searchMobile').value.trim();
+      if (!rawInput) return alert('Please enter a mobile number.');
+
+      const cleanInput = rawInput.replace(/\D/g, '');
+
+      try {
+        const res = await fetch(sheetURL);
+        const data = await res.json();
+
+        const patient = data.find((row, index) => {
+          if (index === 0) return false;
+          const sheetMobile = (row[3] || "").toString().replace(/\D/g, '');
+          return sheetMobile === cleanInput;
+        });
+
+        if (!patient) {
+          alert('No patient found with that mobile number.');
+          document.getElementById('resultBox').style.display = 'none';
+          return;
+        }
+
+        const [name, age, gender, mobileNum, ast, astULN, platelets, apriScore, interpretation] = patient;
+
+        const details = `Name: ${name}
+Age: ${age}
+Gender: ${gender}
+Mobile: ${mobileNum}
+
+AST: ${ast}
+AST ULN: ${astULN}
+Platelet Count: ${platelets}
+
+APRI Score: ${apriScore}
+Interpretation: ${interpretation}`;
+
+        document.getElementById('resultBox').style.display = 'block';
+        document.getElementById('patientDetails').value = details;
+
+        const ctx = document.getElementById('chartCanvas').getContext('2d');
+        if (window.apriChart) window.apriChart.destroy();
+
+        window.apriChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ['Minimal Fibrosis', 'Moderate Fibrosis', 'Severe/Cirrhosis'],
+            datasets: [{
+              data: [
+                interpretation.includes('Minimal') ? 1 : 0,
+                interpretation.includes('Moderate') ? 1 : 0,
+                interpretation.includes('Severe') || interpretation.includes('Cirrhosis') ? 1 : 0
+              ],
+              backgroundColor: ['#4bc0c0', '#ffce56', '#ff6384']
+            }]
+          },
+          options: {
+            plugins: {
+              legend: { labels: { color: "#fff" }},
+              title: {
+                display: true,
+                text: 'Liver Health Chart',
+                color: "#fff"
+              }
+            }
+          }
+        });
+
+      } catch (err) {
+        alert('Error fetching patient data.');
+        console.error("Fetch error:", err);
+      }
+    }
+  </script>
+
+</body>
+</html>

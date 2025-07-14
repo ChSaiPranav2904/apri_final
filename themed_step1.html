@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Step 1: AST Level</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+      color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .logo {
+      height: 60px;
+      margin: 10px;
+      filter: drop-shadow(0 0 6px #ffffffaa);
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+      color: #fff;
+    }
+
+    .text-primary {
+      color: #c2bfff !important;
+    }
+
+    .btn-primary {
+      background-color: #6a5acd;
+      border: none;
+      box-shadow: 0 0 12px #6a5acd;
+    }
+
+    .btn-primary:hover {
+      background-color: #7b68ee;
+      box-shadow: 0 0 20px #7b68ee;
+    }
+
+    .btn-success {
+      background-color: #32d4b6;
+      border: none;
+      box-shadow: 0 0 12px #32d4b6;
+    }
+
+    .btn-success:hover {
+      background-color: #20c9a6;
+      box-shadow: 0 0 20px #20c9a6;
+    }
+
+    .btn-warning,
+    .btn-danger {
+      box-shadow: 0 0 12px #ffcc00;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <div class="text-center mb-4">
+      <img src="yashoda_logo.png.png" class="logo" alt="Yashoda Hospitals" />
+      <img src="BITS_Pilani-Logo.png.png" class="logo" alt="BITS Pilani" />
+    </div>
+
+    <div class="card p-4 mx-auto" style="max-width: 500px;">
+      <h2 class="text-center text-primary mb-4">Step 1: Enter AST Level</h2>
+
+      <div class="mb-3">
+        <label for="ast" class="form-label">AST Level (U/L)</label>
+        <input type="number" id="ast" class="form-control" placeholder="Enter AST Level" required />
+      </div>
+
+      <div class="text-center">
+        <button class="btn btn-success" onclick="saveAST()">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function saveAST() {
+      const ast = document.getElementById("ast").value;
+      if (ast && ast > 0) {
+        localStorage.setItem("ast", ast);
+        localStorage.setItem("step1Complete", "true");
+        window.location.href = "themed_index.html";
+      } else {
+        alert("Please enter a valid AST level.");
+      }
+    }
+  </script>
+</body>
+</html>
