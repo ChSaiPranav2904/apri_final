@@ -56,6 +56,24 @@
       border-radius: 10px;
       cursor: pointer;
     }
+    .view-chart-btn {
+      margin-top: 1rem;
+      background: linear-gradient(to right, #6a5acd, #836fff);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .view-chart-btn:hover {
+      background: linear-gradient(to right, #7b68ee, #9a8fff);
+      box-shadow: 0 0 12px rgba(106, 90, 205, 0.6);
+    }
+    #chartCanvas {
+      max-width: 500px;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -67,14 +85,13 @@
     <h3 class="mb-4">Search Patient by Patient ID </h3>
     <input type="tel" class="form-control mb-3" id="searchMobile" placeholder="Enter patient Id" required>
     <button class="btn btn-primary" onclick="searchPatient()">Search</button>
-<button class="btn btn-info mt-2" onclick="viewChart()">View Chart</button>
-
   </div>
 
   <div id="resultBox" style="display: none;">
     <h5 class="mt-4">Patient Details:</h5>
     <textarea rows="10" readonly id="patientDetails"></textarea>
-    <canvas id="chartCanvas" style="max-width: 500px; margin-top: 2rem;"></canvas>
+    <canvas id="chartCanvas"></canvas>
+    <button class="view-chart-btn" onclick="viewChart()">View Chart</button>
   </div>
 
   <script>
@@ -82,15 +99,15 @@
     if (!sessionStorage.getItem("verified")) {
       alert("You are not authorized. Please login again.");
       window.location.href = "admin_login.html";
-      function viewChart() {
-  window.location.href = "chart.html";
-}
-
     }
 
     function logout() {
       sessionStorage.removeItem("verified");
       window.location.href = "admin_login.html";
+    }
+
+    function viewChart() {
+      window.location.href = "chart.html";
     }
 
     const sheetURL = "https://script.google.com/macros/s/AKfycbzhKWmynjOHlyP711kw_1cGtKmI714xWpzSyjcB6nYwBQdX1JCBrkaVgjySbV20HGUa/exec";
