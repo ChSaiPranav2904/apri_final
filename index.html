@@ -5,6 +5,28 @@
   <title>APRI Calculator</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+    .card p {
+  font-size: 1.05em;
+  line-height: 1.75;
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 18px;
+}
+
+.card hr {
+  border: 0;
+  height: 1px;
+  background: #ddd;
+  margin: 30px 0;
+}
+
+.subtext {
+  font-size: 0.9em;
+  color: #7a7a7a;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  font-style: italic;
+}
     body {
       margin: 0;
       background: linear-gradient(to right, #dad2f3, #f9d4b9);
@@ -91,65 +113,88 @@
       border-radius: 10px;
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(108, 66, 245, 0.4);
-      
     }
-    .admin-btn {
-  background: linear-gradient(135deg, #7b42f6, #b01eff);
-  color: #fff;
-  font-size: 16px;
-  padding: 12px 28px;
-  font-weight: 600;
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(123, 66, 246, 0.3);
-  transition: all 0.3s ease;
-}
 
-.admin-btn:hover {
-  background: linear-gradient(135deg, #6a30e3, #980fff);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(123, 66, 246, 0.4);
-  cursor: pointer;
-}
+    .admin-btn {
+      background: linear-gradient(135deg, #7b42f6, #b01eff);
+      color: #fff;
+      font-size: 16px;
+      padding: 12px 28px;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(123, 66, 246, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .admin-btn:hover {
+      background: linear-gradient(135deg, #6a30e3, #980fff);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(123, 66, 246, 0.4);
+      cursor: pointer;
+    }
+
+    .logo-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 25px;
+    }
+
+    .logo-img {
+      height: 60px;
+      object-fit: contain;
+    }
   </style>
 </head>
 <body>
 
   <div style="position: absolute; top: 20px; right: 20px;">
-  <button class="admin-btn" onclick="location.href='admin_login.html'">Admin Login</button>
-</div>
+    <button class="admin-btn" onclick="location.href='admin_login.html'">Admin Login</button>
+  </div>
 
   <div class="container">
-    <!-- Logos -->
-    <img src="yashoda_logo.png.png" alt="Yashoda Logo" height="40" style="margin-bottom: 10px;">
-    <img src="BITS_Pilani-Logo.png.png" alt="BITS Logo" height="40" style="margin-bottom: 20px;">
+    <!-- Logos side by side -->
+    <div class="logo-row">
+      <img src="yashoda_logo.png.png" alt="Yashoda Logo" class="logo-img">
+      <img src="BITS_Pilani-Logo.png.png" alt="BITS Logo" class="logo-img">
+    </div>
     
     <!-- Title -->
     <h1>Welcome to APRI Calculator</h1>
     <h2>BITS Pilani × Yashoda Hospitals</h2>
 
-    <!-- Content Card -->
-    <div class="card">
-      <h3>About Liver Health</h3>
-      <p>
-        The liver plays a critical role in metabolism, detoxification, and digestion. Monitoring liver function is vital for early detection of conditions such as fibrosis and cirrhosis.
-      </p>
+<div class="card">
+  <h3>About Liver Health</h3>
+  <p class="subtext">Understanding the liver’s role in health and disease</p>
+  <p>
+    The liver is one of the most vital organs in the human body. It regulates metabolism, detoxifies harmful substances, stores nutrients, and aids digestion. 
+    Maintaining liver health is essential to overall well-being, and early screening for liver damage is critical in preventing long-term complications such as fibrosis or cirrhosis.
+  </p>
 
-      <h3>What is Pathology?</h3>
-      <p>
-        Pathology is the study of disease. It involves examining tissues, cells, and organs to understand the nature and cause of diseases, including liver damage.
-      </p>
+  <hr>
 
-      <h3>About This Project</h3>
-      <p>
-        This APRI Calculator was developed by students of BITS Pilani, Hyderabad Campus, under the guidance of doctors from Yashoda Hospitals. It helps estimate liver fibrosis levels using accessible blood test parameters.
-      </p>
+  <h3>What is Pathology?</h3>
+  <p class="subtext">The study of disease and its biological mechanisms</p>
+  <p>
+    Pathology helps identify how and why diseases occur. In liver diagnostics, pathology involves analyzing cells and blood parameters to assess damage and disease progression.
+    Accurate pathology insights lead to better treatment decisions, especially in chronic liver conditions.
+  </p>
 
-      <!-- Only Launch Button -->
-      <div class="buttons">
-  <button class="launch-btn" onclick="location.href='themed_index.html'">Launch APRI Calculator</button>
-     </div>
-    </div>
+  <hr>
+
+  <h3>About This Project</h3>
+  <p class="subtext">A collaborative tool built with clinical and academic synergy</p>
+  <p>
+    This APRI Calculator is the outcome of a joint initiative between students of BITS Pilani, Hyderabad Campus, and clinicians from Yashoda Hospitals.
+    It provides a quick, accessible way to assess liver fibrosis risk using AST levels and platelet counts — no expensive imaging or invasive biopsy required.
+  </p>
+
+  <div class="buttons">
+    <button class="launch-btn" onclick="location.href='themed_index.html'">Launch APRI Calculator</button>
+  </div>
+</div>
   </div>
 
 </body>
