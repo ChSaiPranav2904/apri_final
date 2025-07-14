@@ -100,7 +100,7 @@
       <option value="Female">Female</option>
       <option value="Other">Other</option>
     </select>
-    <input type="text" id="patientId" class="form-control" placeholder="Enter Patient ID" required />
+    <input type="text" id="mobile" class="form-control" placeholder="Enter Patient ID" required />
 
     <div class="btn-group">
       <a href="#" id="step1" class="btn btn-step btn-primary" onclick="goToStep('themed_step1.html')">Step 1</a>
@@ -160,7 +160,7 @@
         localStorage.setItem('name', name);
         localStorage.setItem('age', age);
         localStorage.setItem('gender', gender);
-        localStorage.setItem('patientId', patientId);
+        localStorage.setItem('mobile', patientId);
         window.location.href = stepPage;
       } else {
         alert('Please fill in all fields before proceeding to steps.');
@@ -171,13 +171,13 @@
       const name = document.getElementById('name').value.trim();
       const age = document.getElementById('age').value.trim();
       const gender = document.getElementById('gender').value.trim();
-      const patientId = document.getElementById('patientId').value.trim();
+      const patientId = document.getElementById('mobile').value.trim();
 
       if (name && age && gender && patientId) {
         localStorage.setItem('name', name);
         localStorage.setItem('age', age);
         localStorage.setItem('gender', gender);
-        localStorage.setItem('patientId', patientId);
+        localStorage.setItem('mobile', patientId);
         submitData();
       } else {
         alert("Please fill in all fields.");
@@ -189,7 +189,7 @@
         name: localStorage.getItem('name') || 'N/A',
         age: localStorage.getItem('age') || 'N/A',
         gender: localStorage.getItem('gender') || 'N/A',
-        patientId: localStorage.getItem('patientId') || 'N/A',
+        patientId: localStorage.getItem('mobile') || 'N/A',
         ast: localStorage.getItem('ast') || 'N/A',
         astLimit: localStorage.getItem('astLimit') || 'N/A',
         platelets: localStorage.getItem('platelets') || 'N/A',
@@ -212,7 +212,7 @@
     function downloadResult() {
       const name = localStorage.getItem('name') || 'N/A';
       const content = `--- APRI CALCULATOR REPORT ---\n\n` +
-        `Name: ${name}\nAge: ${localStorage.getItem('age') || 'N/A'}\nGender: ${localStorage.getItem('gender') || 'N/A'}\nPatient ID: ${localStorage.getItem('patientId') || 'N/A'}\n\n` +
+        `Name: ${name}\nAge: ${localStorage.getItem('age') || 'N/A'}\nGender: ${localStorage.getItem('gender') || 'N/A'}\nPatient ID: ${localStorage.getItem('mobile') || 'N/A'}\n\n` +
         `AST: ${localStorage.getItem('ast') || 'N/A'}\nAST Upper Limit: ${localStorage.getItem('astLimit') || 'N/A'}\nPlatelet Count: ${localStorage.getItem('platelets') || 'N/A'}\n\n` +
         `APRI Score: ${localStorage.getItem('apriScore') || 'N/A'}\nInterpretation: ${localStorage.getItem('apriInterpretation') || 'N/A'}`;
 
@@ -235,7 +235,7 @@
       document.getElementById('name').value = localStorage.getItem('name') || '';
       document.getElementById('age').value = localStorage.getItem('age') || '';
       document.getElementById('gender').value = localStorage.getItem('gender') || '';
-      document.getElementById('patientId').value = localStorage.getItem('patientId') || '';
+      document.getElementById('patientId').value = localStorage.getItem('mobile') || '';
     };
   </script>
 </body>
