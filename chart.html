@@ -9,8 +9,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     body {
-      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
-      color: white;
+      background: linear-gradient(to right, #dad2f3, #f9d4b9);
+      color: #2d2d2d;
       font-family: 'Segoe UI', sans-serif;
       padding: 2rem;
       text-align: center;
@@ -18,16 +18,17 @@
     .chart-container {
       max-width: 1000px;
       margin: 0 auto;
-      background: white;
+      background: #ffffffef;
       padding: 1rem;
       border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     }
     canvas {
       width: 100% !important;
       height: 500px !important;
     }
     h1 {
-      color: #c2bfff;
+      color: #6a5acd;
       margin-bottom: 20px;
     }
     #downloadBtn {
@@ -79,9 +80,9 @@
 
         const backgroundColors = avgScores.map(score => {
           const s = parseFloat(score);
-          if (s < 0.5) return '#4caf50';      // Green
-          if (s <= 1.5) return '#ffc107';     // Amber
-          return '#f44336';                   // Red
+          if (s < 0.5) return '#81c784';      // Soft green
+          if (s <= 1.5) return '#fff176';     // Soft amber
+          return '#ef9a9a';                   // Soft red
         });
 
         const ctx = document.getElementById('ageGroupChart').getContext('2d');
@@ -104,17 +105,17 @@
                 title: {
                   display: true,
                   text: 'Age Group',
-                  color: '#000'
+                  color: '#333'
                 },
-                ticks: { color: '#000' }
+                ticks: { color: '#333' }
               },
               y: {
                 title: {
                   display: true,
                   text: 'Average APRI Score',
-                  color: '#000'
+                  color: '#333'
                 },
-                ticks: { color: '#000' }
+                ticks: { color: '#333' }
               }
             },
             plugins: {
@@ -133,7 +134,7 @@
               title: {
                 display: true,
                 text: 'Average APRI Score by Age Group (10-year ranges)',
-                color: '#000',
+                color: '#333',
                 font: { size: 18 }
               },
               legend: {
