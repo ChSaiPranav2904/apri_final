@@ -9,17 +9,18 @@
 
   <style>
     body {
-      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
-      color: white;
+      background: linear-gradient(to right, #dad2f3, #f9d4b9);
+      color: #2d2d2d;
       font-family: 'Segoe UI', sans-serif;
       padding: 2rem;
     }
     .card {
-      background: rgba(255, 255, 255, 0.08);
+      background: #ffffffef;
       border-radius: 20px;
       padding: 2rem;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
       max-width: 600px;
       margin: auto;
       margin-top: 40px;
@@ -29,18 +30,20 @@
     }
     #resultBox {
       margin-top: 2rem;
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: rgba(255, 255, 255, 0.4);
       border-radius: 10px;
       padding: 1rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     }
     textarea {
       white-space: pre-wrap;
-      background-color: rgba(255, 255, 255, 0.05);
-      color: white;
+      background-color: rgba(255, 255, 255, 0.6);
+      color: #2d2d2d;
       border: none;
       width: 100%;
       padding: 10px;
       border-radius: 10px;
+      font-weight: 500;
     }
     .logout-btn {
       position: fixed;
@@ -61,8 +64,8 @@
   <button class="logout-btn" onclick="logout()">Logout</button>
 
   <div class="card text-center">
-    <h3 class="mb-4">Search Patient by Mobile Number</h3>
-    <input type="tel" class="form-control mb-3" id="searchMobile" placeholder="Enter Mobile Number" required>
+    <h3 class="mb-4">Search Patient by Patient ID </h3>
+    <input type="tel" class="form-control mb-3" id="searchMobile" placeholder="Enter patient Id" required>
     <button class="btn btn-primary" onclick="searchPatient()">Search</button>
   </div>
 
@@ -88,7 +91,7 @@
 
     async function searchPatient() {
       const rawInput = document.getElementById('searchMobile').value.trim();
-      if (!rawInput) return alert('Please enter a mobile number.');
+      if (!rawInput) return alert('Please enter a Patient ID.');
 
       const cleanInput = rawInput.replace(/\D/g, '');
 
@@ -103,7 +106,7 @@
         });
 
         if (!patient) {
-          alert('No patient found with that mobile number.');
+          alert('No patient found with that patient ID.');
           document.getElementById('resultBox').style.display = 'none';
           return;
         }
@@ -113,7 +116,7 @@
         const details = `Name: ${name}
 Age: ${age}
 Gender: ${gender}
-Mobile: ${mobileNum}
+Patient ID: ${mobileNum}
 
 AST: ${ast}
 AST ULN: ${astULN}
@@ -143,11 +146,11 @@ Interpretation: ${interpretation}`;
           },
           options: {
             plugins: {
-              legend: { labels: { color: "#fff" }},
+              legend: { labels: { color: "#2d2d2d" }},
               title: {
                 display: true,
                 text: 'Liver Health Chart',
-                color: "#fff"
+                color: "#2d2d2d"
               }
             }
           }
