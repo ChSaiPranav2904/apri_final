@@ -67,6 +67,8 @@
     <h3 class="mb-4">Search Patient by Patient ID </h3>
     <input type="tel" class="form-control mb-3" id="searchMobile" placeholder="Enter patient Id" required>
     <button class="btn btn-primary" onclick="searchPatient()">Search</button>
+<button class="btn btn-info mt-2" onclick="viewChart()">View Chart</button>
+
   </div>
 
   <div id="resultBox" style="display: none;">
@@ -80,6 +82,10 @@
     if (!sessionStorage.getItem("verified")) {
       alert("You are not authorized. Please login again.");
       window.location.href = "admin_login.html";
+      function viewChart() {
+  window.location.href = "chart.html";
+}
+
     }
 
     function logout() {
