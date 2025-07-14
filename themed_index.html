@@ -151,33 +151,34 @@
     }
 
     function goToStep(stepPage) {
-      const name = document.getElementById('name').value.trim();
-      const age = document.getElementById('age').value.trim();
-      const gender = document.getElementById('gender').value.trim();
-      const patientId = document.getElementById('patientId').value.trim();
+  const name = document.getElementById('name').value.trim();
+  const age = document.getElementById('age').value.trim();
+  const gender = document.getElementById('gender').value.trim();
+  const mobile = document.getElementById('mobile').value.trim();
 
-      if (name && age && gender && patientId) {
-        localStorage.setItem('name', name);
-        localStorage.setItem('age', age);
-        localStorage.setItem('gender', gender);
-        localStorage.setItem('mobile', patientId);
-        window.location.href = stepPage;
-      } else {
-        alert('Please fill in all fields before proceeding to steps.');
-      }
-    }
+  if (name && age && gender && mobile) {
+    localStorage.setItem('name', name);
+    localStorage.setItem('age', age);
+    localStorage.setItem('gender', gender);
+    localStorage.setItem('mobile', mobile);
+    window.location.href = stepPage;
+  } else {
+    alert('Please fill in all fields before proceeding to steps.');
+  }
+}
+
 
     function saveUserInfoAndSubmit() {
       const name = document.getElementById('name').value.trim();
       const age = document.getElementById('age').value.trim();
       const gender = document.getElementById('gender').value.trim();
-      const patientId = document.getElementById('mobile').value.trim();
+      const mobile = document.getElementById('mobile').value.trim();
 
-      if (name && age && gender && patientId) {
+      if (name && age && gender && mobile) {
         localStorage.setItem('name', name);
         localStorage.setItem('age', age);
         localStorage.setItem('gender', gender);
-        localStorage.setItem('mobile', patientId);
+        localStorage.setItem('mobile', mobile);
         submitData();
       } else {
         alert("Please fill in all fields.");
@@ -189,7 +190,7 @@
         name: localStorage.getItem('name') || 'N/A',
         age: localStorage.getItem('age') || 'N/A',
         gender: localStorage.getItem('gender') || 'N/A',
-        patientId: localStorage.getItem('mobile') || 'N/A',
+        mobile: localStorage.getItem('mobile') || 'N/A',
         ast: localStorage.getItem('ast') || 'N/A',
         astLimit: localStorage.getItem('astLimit') || 'N/A',
         platelets: localStorage.getItem('platelets') || 'N/A',
@@ -235,7 +236,7 @@
       document.getElementById('name').value = localStorage.getItem('name') || '';
       document.getElementById('age').value = localStorage.getItem('age') || '';
       document.getElementById('gender').value = localStorage.getItem('gender') || '';
-      document.getElementById('patientId').value = localStorage.getItem('mobile') || '';
+      document.getElementById('mobile').value = localStorage.getItem('mobile') || '';
     };
   </script>
 </body>
