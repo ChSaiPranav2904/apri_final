@@ -91,17 +91,38 @@
       border-radius: 10px;
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(108, 66, 245, 0.4);
+      
     }
+    .admin-btn {
+  background: linear-gradient(135deg, #7b42f6, #b01eff);
+  color: #fff;
+  font-size: 16px;
+  padding: 12px 28px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(123, 66, 246, 0.3);
+  transition: all 0.3s ease;
+}
+
+.admin-btn:hover {
+  background: linear-gradient(135deg, #6a30e3, #980fff);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(123, 66, 246, 0.4);
+  cursor: pointer;
+}
   </style>
 </head>
 <body>
 
-  <button class="top-right-btn">Admin Login</button>
+  <div style="position: absolute; top: 20px; right: 20px;">
+  <button class="admin-btn" onclick="location.href='admin_login.html'">Admin Login</button>
+</div>
 
   <div class="container">
     <!-- Logos -->
-    <img src="yashoda_logo.png" alt="Yashoda Logo" height="40" style="margin-bottom: 10px;">
-    <img src="bits_logo.png" alt="BITS Logo" height="40" style="margin-bottom: 20px;">
+    <img src="yashoda_logo.png.png" alt="Yashoda Logo" height="40" style="margin-bottom: 10px;">
+    <img src="BITS_Pilani-Logo.png.png" alt="BITS Logo" height="40" style="margin-bottom: 20px;">
     
     <!-- Title -->
     <h1>Welcome to APRI Calculator</h1>
@@ -126,8 +147,8 @@
 
       <!-- Only Launch Button -->
       <div class="buttons">
-        <button class="launch-btn">Launch APRI Calculator</button>
-      </div>
+  <button class="launch-btn" onclick="location.href='themed_index.html'">Launch APRI Calculator</button>
+     </div>
     </div>
   </div>
 
